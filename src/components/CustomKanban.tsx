@@ -49,7 +49,7 @@ const Board: React.FC = () => {
     <Column
       title="Backlog"
       column="backlog"
-      headingColor="text-neutral-500"
+      headingColor="text-gray-500"
       cards={cards}
       setCards={setCards}
     />
@@ -89,6 +89,7 @@ const Column: React.FC<ColumnProps> = ({
   const [active, setActive] = useState(false);
 
   const handleDragStart = (e: DragEvent<HTMLDivElement>, card: Card) => {
+    console.log("hanlder dragStart")
     e.dataTransfer.setData("cardId", card.id);
   };
 
@@ -124,12 +125,15 @@ const Column: React.FC<ColumnProps> = ({
 
       setCards(copy);
     }
+    console.log("handling dropend card")
   };
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     highlightIndicator(e);
     setActive(true);
+
+    console.log("handle droop over ")
   };
 
   const clearHighlights = (els?: HTMLElement[]) => {
@@ -137,6 +141,7 @@ const Column: React.FC<ColumnProps> = ({
     indicators.forEach((i) => {
       i.style.opacity = "0";
     });
+    console.log("indicators")
   };
 
   const highlightIndicator = (e: DragEvent<HTMLDivElement>) => {
@@ -144,6 +149,7 @@ const Column: React.FC<ColumnProps> = ({
     clearHighlights(indicators);
     const el = getNearestIndicator(e, indicators);
     el.element?.style.setProperty("opacity", "1");
+    console.log("highlight indicator")
   };
 
   const getNearestIndicator = (
