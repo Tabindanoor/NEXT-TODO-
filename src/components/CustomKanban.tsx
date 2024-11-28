@@ -37,8 +37,7 @@ interface AddCardProps {
 export const CustomKanban: React.FC = () => {
   return (
     <div className="h-screen w-full bg-neutral-900 text-neutral-50">
-      {/* <Board /> */}
-      hello 
+      <Board />
     </div>
   );
 };
@@ -297,30 +296,66 @@ const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
 
   return (
     <>
-      {adding ? (
-        <motion.form layout onSubmit={handleSubmit}>
-          <textarea
-            onChange={(e) => setText(e.target.value)}
-            autoFocus
-            placeholder="Add new task..."
-            className="w-full rounded bg-neutral-900 p-3 text-sm text-neutral-50 outline-none"
-          />
+    {adding ? (
+      <motion.form layout onSubmit={handleSubmit}>
+        <textarea
+          onChange={(e) => setText(e.target.value)}
+          autoFocus
+          placeholder="Add new task..."
+          className="w-full rounded border border-violet-400 bg-violet-400/20 p-3 text-sm text-neutral-50 placeholder-violet-300 focus:outline-0"
+        />
+        <div className="mt-1.5 flex items-center justify-end gap-1.5">
+          <button
+            onClick={() => setAdding(false)}
+            className="px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
+          >
+            Close
+          </button>
           <button
             type="submit"
-            className="mt-2 w-full rounded bg-emerald-700 p-1 text-sm"
+            className="flex items-center gap-1.5 rounded bg-neutral-50 px-3 py-1.5 text-xs text-neutral-950 transition-colors hover:bg-neutral-300"
           >
-            Save
+            <span>Add</span>
+            <FiPlus />
           </button>
-        </motion.form>
-      ) : (
-        <button
-          onClick={() => setAdding(true)}
-          className="flex h-8 w-full items-center justify-center rounded bg-neutral-800"
-        >
-          <FiPlus />
-        </button>
-      )}
-    </>
+        </div>
+      </motion.form>
+    ) : (
+      <motion.button
+        layout
+        onClick={() => setAdding(true)}
+        className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
+      >
+        <span>Add card</span>
+        <FiPlus />
+      </motion.button>
+    )}
+  </>
+    // <>
+    //   {adding ? (
+    //     <motion.form layout onSubmit={handleSubmit}>
+    //       <textarea
+    //         onChange={(e) => setText(e.target.value)}
+    //         autoFocus
+    //         placeholder="Add new task..."
+    //         className="w-full rounded bg-neutral-900 p-3 text-sm text-neutral-50 outline-none"
+    //       />
+    //       <button
+    //         type="submit"
+    //         className="mt-2 w-full rounded bg-emerald-700 p-1 text-sm"
+    //       >
+    //         Save
+    //       </button>
+    //     </motion.form>
+    //   ) : (
+    //     <button
+    //       onClick={() => setAdding(true)}
+    //       className="flex h-8 w-full items-center justify-center rounded bg-neutral-800"
+    //     >
+    //       <FiPlus />
+    //     </button>
+    //   )}
+    // </>
   );
 };
 

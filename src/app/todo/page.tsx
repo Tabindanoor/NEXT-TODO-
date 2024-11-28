@@ -2,8 +2,7 @@ import { CustomKanban } from "../../components/CustomKanban"
 
 const page = () => {
   return (
-    <div>
-        heelo 
+    <div> 
         <CustomKanban/>
     </div>
   )
