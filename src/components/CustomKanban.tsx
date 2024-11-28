@@ -1,10 +1,9 @@
 "use client"
-
-
 import React, { useState, DragEvent } from "react";
 import { FiPlus, FiTrash } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { FaFire } from "react-icons/fa";
+
 
 interface Card {
   title: string;
@@ -47,36 +46,36 @@ const Board: React.FC = () => {
 
   return (
     <div className="flex h-full w-full gap-3 overflow-scroll p-12">
-      <Column
-        title="Backlog"
-        column="backlog"
-        headingColor="text-neutral-500"
-        cards={cards}
-        setCards={setCards}
-      />
-      <Column
-        title="TODO"
-        column="todo"
-        headingColor="text-yellow-200"
-        cards={cards}
-        setCards={setCards}
-      />
-      <Column
-        title="In progress"
-        column="doing"
-        headingColor="text-blue-200"
-        cards={cards}
-        setCards={setCards}
-      />
-      <Column
-        title="Complete"
-        column="done"
-        headingColor="text-emerald-200"
-        cards={cards}
-        setCards={setCards}
-      />
-      <BurnBarrel setCards={setCards} />
-    </div>
+    <Column
+      title="Backlog"
+      column="backlog"
+      headingColor="text-neutral-500"
+      cards={cards}
+      setCards={setCards}
+    />
+    <Column
+      title="TODO"
+      column="todo"
+      headingColor="text-yellow-200"
+      cards={cards}
+      setCards={setCards}
+    />
+    <Column
+      title="In progress"
+      column="doing"
+      headingColor="text-blue-200"
+      cards={cards}
+      setCards={setCards}
+    />
+    <Column
+      title="Complete"
+      column="done"
+      headingColor="text-emerald-200"
+      cards={cards}
+      setCards={setCards}
+    />
+    <BurnBarrel setCards={setCards} />
+  </div>
   );
 };
 
@@ -331,31 +330,7 @@ const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
       </motion.button>
     )}
   </>
-    // <>
-    //   {adding ? (
-    //     <motion.form layout onSubmit={handleSubmit}>
-    //       <textarea
-    //         onChange={(e) => setText(e.target.value)}
-    //         autoFocus
-    //         placeholder="Add new task..."
-    //         className="w-full rounded bg-neutral-900 p-3 text-sm text-neutral-50 outline-none"
-    //       />
-    //       <button
-    //         type="submit"
-    //         className="mt-2 w-full rounded bg-emerald-700 p-1 text-sm"
-    //       >
-    //         Save
-    //       </button>
-    //     </motion.form>
-    //   ) : (
-    //     <button
-    //       onClick={() => setAdding(true)}
-    //       className="flex h-8 w-full items-center justify-center rounded bg-neutral-800"
-    //     >
-    //       <FiPlus />
-    //     </button>
-    //   )}
-    // </>
+   
   );
 };
 
