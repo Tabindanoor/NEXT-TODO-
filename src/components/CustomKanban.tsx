@@ -55,29 +55,30 @@ const Board: React.FC = () => {
 
 
   return (
-    <div className="flex h-full w-full gap-3 overflow-scroll p-12">
+    <div className="flex h-full  w-full gap-3 overflow-scroll p-12">
     <Column
       title="Backlog"
       column="backlog"
-      headingColor="text-gray-500"
+      headingColor="text-rose-600 "
       cards={cards}
       setCards={setCards}
     />
     <Column
       title="TODO"
       column="todo"
-      headingColor="text-yellow-200"
+      headingColor="text-cyan-300"
       cards={cards}
       setCards={setCards}
     />
     <Column
       title="In progress"
       column="doing"
-      headingColor="text-blue-200"
+      headingColor="text-lime-400"
       cards={cards}
       setCards={setCards}
     />
     <Column
+
       title="Complete"
       column="done"
       headingColor="text-emerald-200"
@@ -256,6 +257,8 @@ const DropIndicator: React.FC<DropIndicatorProps> = ({ beforeId, column }) => {
   );
 };
 
+
+// code for deleting the task from the screen 
 const BurnBarrel: React.FC<BurnBarrelProps> = ({ setCards }) => {
   const [active, setActive] = useState(false);
 
@@ -311,6 +314,7 @@ const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
 
   return (
     <>
+    {/* code for clicking the add card button and opening a text area for adding new task */}
     {adding ? (
       <motion.form layout onSubmit={handleSubmit}>
         <textarea
@@ -350,6 +354,8 @@ const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
   );
 };
 
+
+// data to be displayed on the screen 
 const DEFAULT_CARDS: Card[] = [
     
   { title: "Look into render bug in dashboard", id: "1", column: "backlog" },
