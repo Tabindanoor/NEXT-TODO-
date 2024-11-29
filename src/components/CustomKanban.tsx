@@ -42,7 +42,17 @@ export const CustomKanban: React.FC = () => {
 };
 
 const Board: React.FC = () => {
-  const [cards, setCards] = useState<Card[]>(DEFAULT_CARDS);
+  // const [cards, setCards] = useState<Card[]>(DEFAULT_CARDS);
+
+  const [cards, setCards] = useState<Card[]>(() => {
+    const savedCards = localStorage.getItem("kanbanCards");
+    return savedCards ? JSON.parse(savedCards) : DEFAULT_CARDS;
+  });
+
+  React.useEffect(() => {
+    localStorage.setItem("kanbanCards", JSON.stringify(cards));
+  }, [cards]);
+
 
   return (
     <div className="flex h-full w-full gap-3 overflow-scroll p-12">
