@@ -4,7 +4,6 @@ import { FiPlus, FiTrash } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { FaFire } from "react-icons/fa";
 
-
 interface Card {
   title: string;
   id: string;
@@ -35,7 +34,7 @@ interface AddCardProps {
 
 export const CustomKanban: React.FC = () => {
   return (
-    <div className="h-screen w-full bg-neutral-900 text-neutral-50">
+    <div className="h-screen w-full bg-neutral-900 overflow-x-hidden overflow-y-hidden text-neutral-50">
       <Board />
     </div>
   );
@@ -217,13 +216,21 @@ const Column: React.FC<ColumnProps> = ({
           active ? "bg-neutral-800/50" : "bg-neutral-800/0"
         }`}
       >
+
         {filteredCards.map((c) => (
-          <Card
-            key={c.id}
-            {...c}
-            handleDragStart={handleDragStart}
-          />
+           <Card
+           key={c.id}
+           {...c}
+           handleDragStart={handleDragStart}
+           setCards={setCards}
+         />
+          // <Card
+          //   key={c.id}
+          //   {...c}
+          //   handleDragStart={handleDragStart}
+          // />
         ))}
+
         <DropIndicator beforeId={null} column={column} />
         <AddCard column={column} setCards={setCards} />
       </div>
@@ -231,22 +238,93 @@ const Column: React.FC<ColumnProps> = ({
   );
 };
 
-const Card: React.FC<Card & { handleDragStart: (e: DragEvent<HTMLDivElement>, card: Card) => void }> = ({ title, id, column, handleDragStart }) => {
+
+const Card: React.FC<Card & { 
+  handleDragStart: (e: DragEvent<HTMLDivElement>, card: Card) => void; 
+  setCards: React.Dispatch<React.SetStateAction<Card[]>>;
+}> = ({ title, id, column, handleDragStart, setCards }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [newTitle, setNewTitle] = useState(title);
+
+  const handleEditSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTitle.trim()) return;
+
+    setCards((prev) =>
+      prev.map((card) =>
+        card.id === id ? { ...card, title: newTitle.trim() } : card
+      )
+    );
+    setIsEditing(false);
+  };
+
   return (
     <>
       <DropIndicator beforeId={id} column={column} />
       <motion.div
         layout
         layoutId={id}
-        draggable="true"
-        onDragStart={(e:any) => handleDragStart(e, { title, id, column })}
+        draggable={!isEditing ? "true" : undefined}
+        onDragStart={(e: any) => handleDragStart(e, { title, id, column })}
         className="cursor-grab rounded border border-neutral-700 bg-neutral-800 p-3 active:cursor-grabbing"
       >
-        <p className="text-sm text-neutral-100">{title}</p>
+        {isEditing ? (
+          <form onSubmit={handleEditSubmit} className="flex flex-col gap-2">
+            <textarea
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+              autoFocus
+              className="w-full rounded border border-violet-400 bg-violet-400/20 p-2 text-sm text-neutral-50 focus:outline-0"
+            />
+            <div className="flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setIsEditing(false)}
+                className="px-3 py-1.5 text-xs text-neutral-400 hover:text-neutral-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="rounded bg-violet-500 px-3 py-1.5 text-xs text-white hover:bg-violet-600"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div className="flex justify-between items-center">
+            <p className="text-sm text-neutral-100">{title}</p>
+            <button
+              onClick={() => setIsEditing(true)}
+              className="text-blue-500 hover:text-green-100 bg-gray-900  p-2 rounded-lg ml-3 "
+            >
+              Edit
+            </button>
+          </div>
+        )}
       </motion.div>
     </>
   );
 };
+
+
+// const Card: React.FC<Card & { handleDragStart: (e: DragEvent<HTMLDivElement>, card: Card) => void }> = ({ title, id, column, handleDragStart }) => {
+//   return (
+//     <>
+//       <DropIndicator beforeId={id} column={column} />
+//       <motion.div
+//         layout
+//         layoutId={id}
+//         draggable="true"
+//         onDragStart={(e:any) => handleDragStart(e, { title, id, column })}
+//         className="cursor-grab rounded border border-neutral-700 bg-neutral-800 p-3 active:cursor-grabbing"
+//       >
+//         <p className="text-sm text-neutral-100">{title}</p>
+//       </motion.div>
+//     </>
+//   );
+// };
 
 const DropIndicator: React.FC<DropIndicatorProps> = ({ beforeId, column }) => {
   return (
@@ -360,28 +438,28 @@ const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
 const DEFAULT_CARDS: Card[] = [
     
   { title: "Look into render bug in dashboard", id: "1", column: "backlog" },
-  { title: "SOX compliance checklist", id: "2", column: "backlog" },
-  { title: "[SPIKE] Migrate to Azure", id: "3", column: "backlog" },
-  { title: "Document Notifications service", id: "4", column: "backlog" },
+  { title: "Learn 3D Models", id: "2", column: "backlog" },
+  { title: "Learn Communication Skills", id: "3", column: "backlog" },
+  { title: "Build Projects", id: "4", column: "backlog" },
   // TODO
   {
-    title: "Research DB options for new microservice",
+    title: "Stay Consistent",
     id: "5",
     column: "todo",
   },
-  { title: "Postmortem for outage", id: "6", column: "todo" },
-  { title: "Sync with product on Q3 roadmap", id: "7", column: "todo" },
+  { title: "Don't be confused", id: "6", column: "todo" },
+  { title: "Try to Focus", id: "7", column: "todo" },
 
   // DOING
   {
-    title: "Refactor context providers to use Zustand",
+    title: "Building Todo List",
     id: "8",
     column: "doing",
   },
-  { title: "Add logging to daily CRON", id: "9", column: "doing" },
+  { title: "Trying to Focus", id: "9", column: "doing" },
   // DONE
   {
-    title: "Set up DD dashboards for Lambda listener",
+    title: "Nothing 😉",
     id: "10",
     column: "done",
   },
