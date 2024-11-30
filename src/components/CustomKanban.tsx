@@ -174,6 +174,7 @@ const Column: React.FC<ColumnProps> = ({
         const box = child.getBoundingClientRect();
         const offset = e.clientY - (box.top + DISTANCE_OFFSET);
 
+        // Ignore elements that are not in the same column
         if (offset < 0 && offset > closest.offset) {
           return { offset: offset, element: child };
         } else {
