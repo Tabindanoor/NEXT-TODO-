@@ -265,7 +265,7 @@ const Card: React.FC<Card & {
         layout
         layoutId={id}
         draggable={!isEditing ? "true" : undefined}
-        onDragStart={(e: any) => handleDragStart(e, { title, id, column })}
+        onDragStart={(e:any) => handleDragStart(e, { title, id, column })}
         className="cursor-grab rounded border border-neutral-700 bg-neutral-800 p-3 active:cursor-grabbing"
       >
         {isEditing ? (
