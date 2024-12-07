@@ -237,8 +237,6 @@ const Column: React.FC<ColumnProps> = ({
     </div>
   );
 };
-
-
 const Card: React.FC<Card & { 
   handleDragStart: (e: DragEvent<HTMLDivElement>, card: Card) => void; 
   setCards: React.Dispatch<React.SetStateAction<Card[]>>;
@@ -257,16 +255,14 @@ const Card: React.FC<Card & {
     );
     setIsEditing(false);
   };
-
   return (
     <>
+    <p>hey there is a todo list </p>
       <DropIndicator beforeId={id} column={column} />
       <motion.div
         layout
         layoutId={id}
-        draggable={!isEditing ? "true" : undefined}
-
-        
+        draggable={!isEditing ? "true" : undefined}        
         onDragStart={(e: any) => handleDragStart(e, { title, id, column })}
         className="cursor-grab rounded border border-neutral-700 bg-neutral-800 p-3 active:cursor-grabbing"
       >
