@@ -257,7 +257,6 @@ const Card: React.FC<Card & {
   };
   return (
     <>
-    <p>hey there is a todo list </p>
       <DropIndicator beforeId={id} column={column} />
       <motion.div
         layout
