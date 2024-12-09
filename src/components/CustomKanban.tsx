@@ -55,6 +55,7 @@ const Board: React.FC = () => {
 
   return (
     <div className="flex h-full  w-full gap-3 overflow-scroll p-12">
+      <pre>me kahan jaon yar me kia kron </pre>
     <Column
       title="Backlog"
       column="backlog"
