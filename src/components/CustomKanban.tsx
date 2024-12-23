@@ -32,7 +32,7 @@ interface AddCardProps {
   setCards: React.Dispatch<React.SetStateAction<Card[]>>;
 }
 
-export const CustomKanban: React.FC = () => {
+  const CustomKanban: React.FC = () => {
   return (
     <div className="h-screen w-full bg-neutral-900 overflow-x-hidden overflow-y-hidden text-neutral-50">
       <Board />         
@@ -461,3 +461,5 @@ const DEFAULT_CARDS: Card[] = [
     column: "done",
   },
 ];
+
+export default CustomKanban
