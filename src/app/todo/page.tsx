@@ -1,4 +1,5 @@
-import CustomKanban from "../../components/CustomKanban"
+import CustomKanban from "@/src/components/CustomKanban"
+
 
 const page = () => {
   return (
