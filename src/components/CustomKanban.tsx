@@ -35,6 +35,7 @@ interface AddCardProps {
   const CustomKanban: React.FC = () => {
   return (
     <div className="h-screen w-full bg-neutral-900 overflow-x-hidden overflow-y-hidden text-neutral-50">
+      <p>this is board</p>
       <Board />         
     </div>
   );
