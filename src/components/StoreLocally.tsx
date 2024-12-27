@@ -7,7 +7,7 @@ interface Todo {
   text: string;
 }
 
-export default function LocalStorage() {
+export default function StoreLocally() {
   const [todos, setTodos] = useState<Todo[]>([]); // Array of todos
   const [searchQuery, setSearchQuery] = useState<string>(""); // Search query
   const [newTodo, setNewTodo] = useState<string>(""); // New todo input

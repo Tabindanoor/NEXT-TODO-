@@ -1,9 +1,15 @@
-import CustomKanban from "@/src/components/CustomKanban"
+// import CustomKanban from "@/src/components/CustomKanban"
+// import { div } from "framer-motion/m"
 
 
 const page = () => {
   return (
-        <CustomKanban/>
+    <div>
+      todo
+      {/* <CustomKanban/> */}
+      </div>
+
+
   )
 }
 
