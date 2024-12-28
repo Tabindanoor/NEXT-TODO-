@@ -98,46 +98,85 @@ const Column: React.FC<ColumnProps> = ({
 }) => {
   const [active, setActive] = useState(false);
 
+  // const handleDragStart = (e: DragEvent<HTMLDivElement>, card: Card) => {
+  //   console.log("hanlder dragStart")
+  //   e.dataTransfer.setData("cardId", card.id);
+  // };
+
+  // const handleDragEnd = (e: DragEvent<HTMLDivElement>) => {
+  //   const cardId = e.dataTransfer.getData("cardId");
+  //   setActive(false);
+  //   clearHighlights();
+
+  //   const indicators = getIndicators();
+  //   const { element } = getNearestIndicator(e, indicators);
+
+  //   const before = element?.dataset.before || "-1";
+
+  //   if (before !== cardId) {
+  //     let copy = [...cards];
+
+  //     let cardToTransfer = copy.find((c) => c.id === cardId);
+  //     if (!cardToTransfer) return;
+  //     cardToTransfer = { ...cardToTransfer, column };
+
+  //     copy = copy.filter((c) => c.id !== cardId);
+
+  //     const moveToBack = before === "-1";
+
+  //     if (moveToBack) {
+  //       copy.push(cardToTransfer);
+  //     } else {
+  //       const insertAtIndex = copy.findIndex((el) => el.id === before);
+  //       if (insertAtIndex === undefined) return;
+
+  //       copy.splice(insertAtIndex, 0, cardToTransfer);
+  //     }
+
+  //     setCards(copy);
+  //   }
+  //   console.log("handling dropend card")
+  // };
+
+
+
   const handleDragStart = (e: DragEvent<HTMLDivElement>, card: Card) => {
-    console.log("hanlder dragStart")
     e.dataTransfer.setData("cardId", card.id);
   };
-
+  
   const handleDragEnd = (e: DragEvent<HTMLDivElement>) => {
     const cardId = e.dataTransfer.getData("cardId");
     setActive(false);
     clearHighlights();
-
+  
     const indicators = getIndicators();
     const { element } = getNearestIndicator(e, indicators);
-
+  
     const before = element?.dataset.before || "-1";
-
+  
     if (before !== cardId) {
       let copy = [...cards];
-
+  
       let cardToTransfer = copy.find((c) => c.id === cardId);
       if (!cardToTransfer) return;
       cardToTransfer = { ...cardToTransfer, column };
-
+  
       copy = copy.filter((c) => c.id !== cardId);
-
+  
       const moveToBack = before === "-1";
-
+  
       if (moveToBack) {
         copy.push(cardToTransfer);
       } else {
         const insertAtIndex = copy.findIndex((el) => el.id === before);
-        if (insertAtIndex === undefined) return;
-
+        if (insertAtIndex === -1) return; // Ensure valid index
+  
         copy.splice(insertAtIndex, 0, cardToTransfer);
       }
-
+  
       setCards(copy);
     }
-    console.log("handling dropend card")
   };
-
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     highlightIndicator(e);
@@ -305,23 +344,6 @@ const Card: React.FC<Card & {
   );
 };
 
-
-// const Card: React.FC<Card & { handleDragStart: (e: DragEvent<HTMLDivElement>, card: Card) => void }> = ({ title, id, column, handleDragStart }) => {
-//   return (
-//     <>
-//       <DropIndicator beforeId={id} column={column} />
-//       <motion.div
-//         layout
-//         layoutId={id}
-//         draggable="true"
-//         onDragStart={(e:any) => handleDragStart(e, { title, id, column })}
-//         className="cursor-grab rounded border border-neutral-700 bg-neutral-800 p-3 active:cursor-grabbing"
-//       >
-//         <p className="text-sm text-neutral-100">{title}</p>
-//       </motion.div>
-//     </>
-//   );
-// };
 
 const DropIndicator: React.FC<DropIndicatorProps> = ({ beforeId, column }) => {
   return (
