@@ -98,6 +98,8 @@ const Column: React.FC<ColumnProps> = ({
 }) => {
   const [active, setActive] = useState(false);
 
+
+  // commented code 
   // const handleDragStart = (e: DragEvent<HTMLDivElement>, card: Card) => {
   //   console.log("hanlder dragStart")
   //   e.dataTransfer.setData("cardId", card.id);
