@@ -41,16 +41,16 @@ interface AddCardProps {
 };
 
 const Board: React.FC = () => {
-  // const [cards, setCards] = useState<Card[]>(DEFAULT_CARDS);
+  const [cards, setCards] = useState<Card[]>(DEFAULT_CARDS);
 
-  const [cards, setCards] = useState<Card[]>(() => {
-    const savedCards = localStorage.getItem("kanbanCards");
-    return savedCards ? JSON.parse(savedCards) : DEFAULT_CARDS;
-  });
+  // const [cards, setCards] = useState<Card[]>(() => {
+  //   const savedCards = localStorage.getItem("kanbanCards");
+  //   return savedCards ? JSON.parse(savedCards) : DEFAULT_CARDS;
+  // });
 
-  React.useEffect(() => {
-    localStorage.setItem("kanbanCards", JSON.stringify(cards));
-  }, [cards]);
+  // React.useEffect(() => {
+  //   localStorage.setItem("kanbanCards", JSON.stringify(cards));
+  // }, [cards]);
 
 
   return (
@@ -458,32 +458,32 @@ const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
 // data to be displayed on the screen 
 const DEFAULT_CARDS: Card[] = [
     
-  { title: "Look into render bug in dashboard", id: "1", column: "backlog" },
-  { title: "Learn 3D Models", id: "2", column: "backlog" },
-  { title: "Learn Communication Skills", id: "3", column: "backlog" },
-  { title: "Build Projects", id: "4", column: "backlog" },
-  // TODO
-  {
-    title: "Stay Consistent",
-    id: "5",
-    column: "todo",
-  },
-  { title: "Don't be confused", id: "6", column: "todo" },
-  { title: "Try to Focus", id: "7", column: "todo" },
+  // { title: "Look into render bug in dashboard", id: "1", column: "backlog" },
+  // { title: "Learn 3D Models", id: "2", column: "backlog" },
+  // { title: "Learn Communication Skills", id: "3", column: "backlog" },
+  // { title: "Build Projects", id: "4", column: "backlog" },
+  // // TODO
+  // {
+  //   title: "Stay Consistent",
+  //   id: "5",
+  //   column: "todo",
+  // },
+  // { title: "Don't be confused", id: "6", column: "todo" },
+  // { title: "Try to Focus", id: "7", column: "todo" },
 
-  // DOING
-  {
-    title: "Building Todo List",
-    id: "8",
-    column: "doing",
-  },
-  { title: "Trying to Focus", id: "9", column: "doing" },
-  // DONE
-  {
-    title: "Nothing 😉",
-    id: "10",
-    column: "done",
-  },
+  // // DOING
+  // {
+  //   title: "Building Todo List",
+  //   id: "8",
+  //   column: "doing",
+  // },
+  // { title: "Trying to Focus", id: "9", column: "doing" },
+  // // DONE
+  // {
+  //   title: "Nothing 😉",
+  //   id: "10",
+  //   column: "done",
+  // },
 ];
 
 export default CustomKanban
