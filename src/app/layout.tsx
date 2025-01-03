@@ -27,15 +27,13 @@ export default function RootLayout({
     <html lang="en">
 
 <head>
-        {/* Add global meta tags or links here */}
       </head>
-      <body>{children}</body>
 
-      {/* <body
+      <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-      </body> */}
+      </body>
     </html>
   );
 }
