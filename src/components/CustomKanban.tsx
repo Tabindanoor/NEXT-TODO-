@@ -414,7 +414,6 @@ const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
 
   return (
     <>
-    {/* code for clicking the add card button and opening a text area for adding new task */}
     {adding ? (
       <motion.form layout onSubmit={handleSubmit}>
         <textarea
