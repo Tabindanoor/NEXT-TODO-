@@ -54,7 +54,7 @@ const Board: React.FC = () => {
 
 
   return (
-    <div className="flex h-full  w-full gap-3 overflow-scroll p-12">
+    <div className="flex h-full  w-full  gap-3 overflow-scroll p-12">
     <Column
       title="Backlog"
       column="backlog"
