@@ -1,8 +1,10 @@
 "use client"
 import React, { useState, DragEvent } from "react";
-import { FiPlus, FiTrash } from "react-icons/fi";
+import { FiTrash } from "react-icons/fi";
+// import { FiPlus } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { FaFire } from "react-icons/fa";
+import { AddCard } from "./AddCard";
 
 interface Card {
   title: string;
@@ -27,10 +29,10 @@ interface BurnBarrelProps {
   setCards: React.Dispatch<React.SetStateAction<Card[]>>;
 }
 
-interface AddCardProps {
-  column: string;
-  setCards: React.Dispatch<React.SetStateAction<Card[]>>;
-}
+// interface AddCardProps {
+//   column: string;
+//   setCards: React.Dispatch<React.SetStateAction<Card[]>>;
+// }
 
   const CustomKanban: React.FC = () => {
   return (
@@ -235,6 +237,7 @@ const Column: React.FC<ColumnProps> = ({
     </div>
   );
 };
+
 const Card: React.FC<Card & { 
   handleDragStart: (e: DragEvent<HTMLDivElement>, card: Card) => void; 
   setCards: React.Dispatch<React.SetStateAction<Card[]>>;
@@ -349,69 +352,66 @@ const BurnBarrel: React.FC<BurnBarrelProps> = ({ setCards }) => {
     </div>
   );
 };
+// const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
+//   const [isAdding, setIsAdding] = useState(false);
+//   const [newCardTitle, setNewCardTitle] = useState("");
 
-const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
-  const [text, setText] = useState("");
-  const [adding, setAdding] = useState(false);
+//   const handleAddSubmit = (e: React.FormEvent) => {
+//     e.preventDefault();
+//     if (!newCardTitle.trim()) return;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+//     setCards((prev) => [
+//       ...prev,
+//       {
+//         id: Math.random().toString(36).substr(2, 9), // Generate a unique ID
+//         title: newCardTitle.trim(),
+//         column,
+//       },
+//     ]);
+//     setNewCardTitle("");
+//     setIsAdding(false);
+//   };
 
-    if (!text.trim().length) return;
+//   return (
+//     <div className="mt-3">
+//       {isAdding ? (
+//         <form onSubmit={handleAddSubmit} className="flex flex-col gap-2">
+//           <textarea
+//             value={newCardTitle}
+//             onChange={(e) => setNewCardTitle(e.target.value)}
+//             autoFocus
+//             placeholder="Enter card title"
+//             className="w-full rounded border border-violet-400 bg-violet-400/20 p-2 text-sm text-neutral-50 focus:outline-0"
+//           />
+//           <div className="flex justify-end gap-2">
+//             <button
+//               type="button"
+//               onClick={() => setIsAdding(false)}
+//               className="px-3 py-1.5 text-xs text-neutral-400 hover:text-neutral-50"
+//             >
+//               Cancel
+//             </button>
+//             <button
+//               type="submit"
+//               className="rounded bg-violet-500 px-3 py-1.5 text-xs text-white hover:bg-violet-600"
+//             >
+//               Add
+//             </button>
+//           </div>
+//         </form>
+//       ) : (
+//         <button
+//           onClick={() => setIsAdding(true)}
+//           className="flex items-center gap-2 text-sm text-neutral-400 hover:text-neutral-50"
+//         >
+//           <FiPlus />
+//           Add Card
+//         </button>
+//       )}
+//     </div>
+//   );
+// };
 
-    const newCard: Card = {
-      column,
-      title: text.trim(),
-      id: Math.random().toString(),
-    };
-
-    setCards((pv) => [...pv, newCard]);
-    setAdding(false);
-  };
-
-  return (
-    <>
-    {adding ? (
-      <motion.form layout onSubmit={handleSubmit}>
-        <textarea
-          onChange={(e) => setText(e.target.value)}
-          autoFocus
-          placeholder="Add new task..."
-          className="w-full rounded border border-violet-400 bg-violet-400/20 p-3 text-sm text-neutral-50 placeholder-violet-300 focus:outline-0"
-        />
-        <div className="mt-1.5 flex items-center justify-end gap-1.5">
-          <button
-            onClick={() => setAdding(false)}
-            className="px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
-          >
-            Close
-          </button>
-          <button
-            type="submit"
-            className="flex items-center gap-1.5 rounded bg-neutral-50 px-3 py-1.5 text-xs text-neutral-950 transition-colors hover:bg-neutral-300"
-          >
-            <span>Add</span>
-            <FiPlus />
-          </button>
-        </div>
-      </motion.form>
-    ) : (
-      <motion.button
-        layout
-        onClick={() => setAdding(true)}
-        className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
-      >
-        <span>Add card</span>
-        <FiPlus />
-      </motion.button>
-    )}
-  </>
-   
-  );
-};
-
-
-// data to be displayed on the screen 
 const DEFAULT_CARDS: Card[] = [
     
   // { title: "Look into render bug in dashboard", id: "1", column: "backlog" },
