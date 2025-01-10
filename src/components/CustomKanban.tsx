@@ -1,9 +1,9 @@
 "use client"
 import React, { useState, DragEvent } from "react";
-import { FiTrash } from "react-icons/fi";
+// import { FiTrash } from "react-icons/fi";
 // import { FiPlus } from "react-icons/fi";
 import { motion } from "framer-motion";
-import { FaFire } from "react-icons/fa";
+// import { FaFire } from "react-icons/fa";
 import { AddCard } from "./AddCard";
 import BurnBarrel from "./BurnBarrel";
 
