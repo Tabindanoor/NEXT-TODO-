@@ -26,9 +26,9 @@ interface DropIndicatorProps {
   column: string;
 }
 
-interface BurnBarrelProps {
-  setCards: React.Dispatch<React.SetStateAction<Card[]>>;
-}
+// interface BurnBarrelProps {
+//   setCards: React.Dispatch<React.SetStateAction<Card[]>>;
+// }
 
 // interface AddCardProps {
 //   column: string;

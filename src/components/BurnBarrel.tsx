@@ -8,6 +8,9 @@ interface Card {
   column: string;
 }
 
+
+
+
 interface BurnBarrelProps {
   setCards: React.Dispatch<React.SetStateAction<Card[]>>;
 }
