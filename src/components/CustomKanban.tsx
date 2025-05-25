@@ -144,7 +144,7 @@ const Column: React.FC<ColumnProps> = ({
     highlightIndicator(e);
     setActive(true);
 
-    console.log("handle droop over ")
+    // console.log("handle droop over ")
   };
 
   const clearHighlights = (els?: HTMLElement[]) => {
@@ -152,7 +152,7 @@ const Column: React.FC<ColumnProps> = ({
     indicators.forEach((i) => {
       i.style.opacity = "0";
     });
-    console.log("indicators")
+    // console.log("indicators")
   };
 
   const highlightIndicator = (e: DragEvent<HTMLDivElement>) => {
@@ -160,7 +160,7 @@ const Column: React.FC<ColumnProps> = ({
     clearHighlights(indicators);
     const el = getNearestIndicator(e, indicators);
     el.element?.style.setProperty("opacity", "1");
-    console.log("highlight indicator")
+    // console.log("highlight indicator")
   };
 
   const getNearestIndicator = (
